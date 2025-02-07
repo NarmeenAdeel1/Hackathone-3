@@ -11,13 +11,13 @@ interface Product {
   image: { asset: { _ref: string } };
   price: string;
   description: string;
-  
 }
 
 interface ProductPageProps {
-  params: { slug?: string };
+  params: { slug: string }; // `slug` is required here
 }
 
+// Make sure the function that calls `getProduct` is asynchronous if needed
 async function getProduct(slug: string): Promise<Product | null> {
   try {
     const product = await client.fetch(
@@ -38,8 +38,9 @@ async function getProduct(slug: string): Promise<Product | null> {
   }
 }
 
+// The main ProductPage component, making it async to handle async operations like getProduct
 export default async function ProductPage({ params }: ProductPageProps) {
-  const slug = params?.slug;
+  const slug = params.slug;
 
   if (!slug) {
     return <p className="text-red-500 text-center">Invalid product slug!</p>;
