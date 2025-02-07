@@ -12,7 +12,7 @@ export default function HomePageV2() {
 
         
         <div className="relative w-[1440px] h-[704px] mx-auto border">
-  <img 
+  <Image 
     src="woodentables.jpg" 
     alt="Background Image" 
     className="w-full h-full object-cover"
@@ -129,7 +129,7 @@ export default function HomePageV2() {
 
 
 <div className="mt-6 relative">
-<img 
+<Image 
     src="hpv2last.jpg" 
     alt="Background Image" 
     className="w-full max-h-[444px] object-cover"

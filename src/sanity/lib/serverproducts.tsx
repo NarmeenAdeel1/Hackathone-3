@@ -2,7 +2,7 @@ import { sanityFetch } from "@/sanity/lib/live";
 
 const allProductsQuery = `*[_type == "product"]{
   _id,
-  name,
+  productName,  // 'name' ko 'productName' se replace kiya
   slug,
   image {
     asset-> { url }
@@ -24,8 +24,6 @@ const allProductsQuery = `*[_type == "product"]{
 
 export async function getProducts() {
   const data = await sanityFetch({ query: allProductsQuery });
-  console.log("Fetched Products:", data); 
+  console.log("Fetched Products:", data);  // Data ko console par print karenge
   return data;
 }
-;
-

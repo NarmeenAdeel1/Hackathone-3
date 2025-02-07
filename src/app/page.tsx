@@ -254,7 +254,7 @@ export default function page() {
 
         {/* Right Side Image */}
         <div className="w-[720px] h-[603px] ml-auto">
-          <img
+          <Image
             src="/HPLP.jpg"
             alt="Example"
             className="w-full h-full object-cover"

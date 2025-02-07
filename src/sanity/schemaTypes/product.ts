@@ -13,14 +13,8 @@ export const product = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "title",
-      title: "Product Name",
-      type: "string",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "productName",
-      title: "Product Name (Alias)",
+      name: "productName",  // Change 'title' to 'productName'
+      title: "Product Name", 
       type: "string",
       validation: (rule) => rule.required(),
     }),
@@ -29,7 +23,7 @@ export const product = defineType({
       title: "Slug",
       type: "slug",
       validation: (rule) => rule.required(),
-      options: { source: "title" },
+      options: { source: "productName" },  // Update to use 'productName'
     }),
     defineField({
       name: "image",

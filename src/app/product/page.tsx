@@ -5,14 +5,13 @@ import Image from "next/image";
 import { getProducts } from "../../sanity/lib/serverproducts";
 import Swal from "sweetalert2"; 
 
-
 // Import Header component
 import Header from "../../components/header";
 
 // Updated Product type
 type Product = {
   _id: string;
-  productName: string; // Assuming this field exists in your schema
+  productName: string;  // Field updated to productName
   slug: { current: string };
   image: { asset: { url: string } };
   price: string;
@@ -48,7 +47,7 @@ const ProductList = () => {
         setProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
-        Swal.fire('Error fetching products!',  'error'); // Show error to user
+        Swal.fire('Error fetching products!', 'error'); // Show error to user
       } finally {
         setLoading(false);
       }
@@ -67,12 +66,12 @@ const ProductList = () => {
             <a href={`/furniture/${product.slug.current}`}>
               <Image
                 src={product.image.asset.url}
-                alt={product.productName}
+                alt={product.productName}  // Updated to match productName
                 width={300}
                 height={300}
                 className="w-full h-60 object-cover rounded-md mb-4"
               />
-              <h2 className="text-xl font-semibold mb-2">{product.productName}</h2>
+              <h2 className="text-xl font-semibold mb-2">{product.productName}</h2> {/* Updated to productName */}
               <p className="text-gray-600 text-sm mb-4">{product.description}</p>
               <p className="text-lg font-bold text-blue-500">
                 ${(parseFloat(product.price) || 0).toFixed(2)}

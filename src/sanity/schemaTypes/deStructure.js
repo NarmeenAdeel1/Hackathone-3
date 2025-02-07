@@ -1,14 +1,15 @@
-// deskStructure.js
 import S from '@sanity/desk-tool/structure-builder'
 
-export default () =>
+const deskStructure = () =>
   S.list()
     .title('Content')
     .items([
       S.documentTypeListItem('product').title('Products').child(
         S.document().views([
-          S.view.form().permission('create', 'editor') // Role-based permission
+          S.view.form().permission('create', 'editor')
         ])
       ),
       S.documentTypeListItem('order').title('Orders'),
     ])
+
+export default deskStructure

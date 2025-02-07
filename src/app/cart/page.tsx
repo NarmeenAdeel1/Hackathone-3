@@ -1,6 +1,6 @@
 'use client'
 
-import { product } from "@/sanity/type/product"; 
+import { Product } from "@/sanity/type/product"; 
 import React, { useEffect, useState } from "react";
 import {
   getCartItems,
@@ -18,7 +18,7 @@ import Header from "../../components/header";
 
 const Cart = () => {
 
-  const [cartItems, setCartItems] = useState<product[]>([]);
+  const [cartItems, setCartItems] = useState<Product[]>([]);
 
   useEffect(() => {
     setCartItems(getCartItems());
@@ -112,7 +112,7 @@ return (
                 />
               )}
               <div className="ml-4">
-                <h2 className="text-lg font-semibold">{item.title}</h2>
+                <h2 className="text-lg font-semibold">{item.productName}</h2>
                 <p className="text-gray-500">Price: ${item.price}</p>
                 <div className="flex items-center mt-2">
                   <button

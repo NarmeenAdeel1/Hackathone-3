@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { getCartItems } from "@/app/actions/actions";
 import Link from "next/link";
-import { product } from "@/sanity/type/product"; 
+import { Product } from "@/sanity/type/product"; 
 import { urlFor } from "@/sanity/lib/image";
 import { CgChevronRight } from "react-icons/cg";
 import { client } from "@/sanity/lib/client";
@@ -12,7 +12,7 @@ import { client } from "@/sanity/lib/client";
 
 
 export default function Checkout() {
-  const [cartItems, setCartItems] = useState<product[]>([]);
+  const [cartItems, setCartItems] = useState<Product[]>([]);
   const [discount, setDiscount] = useState<number>(0);
   const [formValues, setFormValues] = useState({
     firstName: "",
@@ -129,7 +129,7 @@ export default function Checkout() {
                     {item.image && (
                       <Image
                         src={urlFor(item.image).url()}
-                        alt={`Image of ${item.title}`} // Added alt text
+                        alt={`Image of ${item.productName}`} // Added alt text
                         width={64}
                         height={64}
                         className="object-cover w-full h-full"
@@ -137,7 +137,7 @@ export default function Checkout() {
                     )}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-sm font-medium">{item.title} </h3>
+                    <h3 className="text-sm font-medium">{item.productName} </h3>
                     <p className="text-xs text-gray-500">
                       Quantity: {item.inventory}
                     </p>
