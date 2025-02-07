@@ -13,41 +13,38 @@ interface Product {
   description: string;
 }
 
-interface ProductPageProps {
-  params: { slug: string }; // `slug` is required here
-}
-
-// Make sure the function that calls `getProduct` is asynchronous if needed
-async function getProduct(slug: string): Promise<Product | null> {
-  try {
-    const product = await client.fetch(
-      groq`*[_type == "product" && slug.current == $slug][0] {
-        _id,
-        title,
-        slug,
-        image,
-        price,
-        description
-      }`,
-      { slug }
-    );
-    return product || null;
-  } catch (error) {
-    console.error("Error fetching product:", error);
-    return null;
-  }
-}
-
-// The main ProductPage component, making it async to handle async operations like getProduct
-export default async function ProductPage({ params }: ProductPageProps) {
+// Fetch product using getServerSideProps
+export async function getServerSideProps({ params }: { params: { slug: string } }) {
   const slug = params.slug;
-
+  
   if (!slug) {
-    return <p className="text-red-500 text-center">Invalid product slug!</p>;
+    return { notFound: true };
   }
 
-  const product = await getProduct(slug);
+  const product = await client.fetch(
+    groq`*[_type == "product" && slug.current == $slug][0] {
+      _id,
+      title,
+      slug,
+      image,
+      price,
+      description
+    }`,
+    { slug }
+  );
 
+  if (!product) {
+    return { notFound: true };
+  }
+
+  return { props: { product } };
+}
+
+interface ProductPageProps {
+  product: Product;
+}
+
+export default function ProductPage({ product }: ProductPageProps) {
   if (!product) {
     return <p className="text-red-500 text-center">Product not found!</p>;
   }
