@@ -10,10 +10,17 @@ export const product = defineType({
       title: "Category",
       type: "reference",
       to: [{ type: "category" }],
+      validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "title", // ✅ productName ko replace kiya "title" se
+      name: "title",
       title: "Product Name",
+      type: "string",
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: "productName",
+      title: "Product Name (Alias)",
       type: "string",
       validation: (rule) => rule.required(),
     }),
@@ -22,14 +29,12 @@ export const product = defineType({
       title: "Slug",
       type: "slug",
       validation: (rule) => rule.required(),
-      options: {
-        source: "title", // ✅ source ko "title" se match kiya
-      },
+      options: { source: "title" },
     }),
     defineField({
       name: "image",
       type: "image",
-      title: "Image", // ✅ Fix title
+      title: "Image",
       validation: (rule) => rule.required().error("Image is required!"),
     }),
     defineField({
@@ -43,11 +48,6 @@ export const product = defineType({
       title: "Inventory",
       type: "number",
       validation: (rule) => rule.min(0),
-    }),
-    defineField({
-      name: "quantity",
-      title: "Quantity",
-      type: "number",
     }),
     defineField({
       name: "tags",

@@ -11,6 +11,8 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation"
+import Header from "../../components/header";
+
 
 
 
@@ -110,7 +112,7 @@ return (
                 />
               )}
               <div className="ml-4">
-                <h2 className="text-lg font-semibold">{item.productName}</h2>
+                <h2 className="text-lg font-semibold">{item.title}</h2>
                 <p className="text-gray-500">Price: ${item.price}</p>
                 <div className="flex items-center mt-2">
                   <button
@@ -161,10 +163,22 @@ return (
       </div>
     )}
         
+     
     
   </div>
 );
 };
 
-export default Cart;
 
+
+// export default Cart;
+
+
+
+export default function Home() {
+  return (
+    <div>
+      <Header /> {/* Header ko yahan render karein */}
+      <Cart /> {/* Cart ko yahan render karein */}
+    </div>
+  )}

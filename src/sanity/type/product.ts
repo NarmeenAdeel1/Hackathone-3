@@ -1,9 +1,6 @@
-// Import Rule from sanity types
-import { Rule } from '@sanity/types';
-
 export interface product {
     _id: string;
-    productName: string;
+    title: string; // Replace productName with title
     _type: "product";
     image?: {
         asset: {
