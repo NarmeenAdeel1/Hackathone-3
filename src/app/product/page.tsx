@@ -3,11 +3,8 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { getProducts } from "../../sanity/lib/serverproducts";
-import { addToCart } from "../actions/actions";
 import Swal from "sweetalert2"; 
-import { product } from "@/sanity/type/product"; // Ensure this import is correct
-import Prodcuts from "@/components/products";
-import { title } from "process";
+
 
 // Import Header component
 import Header from "../../components/header";

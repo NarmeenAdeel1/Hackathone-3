@@ -1,7 +1,6 @@
 import Link from 'next/link'; // Importing Link for client-side routing
 import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
 import { RxAvatar } from "react-icons/rx";
-import HomePageV1 from '../app/page';
 // import ProductList1 from '../app/productlist1/page';
 // import ProductList2 from '../app/productlist2/page';
 

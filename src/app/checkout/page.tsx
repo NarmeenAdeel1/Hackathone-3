@@ -9,7 +9,6 @@ import { urlFor } from "@/sanity/lib/image";
 import { CgChevronRight } from "react-icons/cg";
 import { client } from "@/sanity/lib/client";
 
-import Header from "../../components/header";
 
 
 export default function Checkout() {

@@ -4,7 +4,6 @@ import Footer from "../components/footer";
 import { FaTruck, FaCheckCircle, FaEnvelope, FaLeaf } from "react-icons/fa"; // React Icons library
 import Prodcuts from "../components/products";
 import "./globals.css";
-import HeaderSection from "../components/header";
 
 
 

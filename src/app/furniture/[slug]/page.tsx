@@ -1,6 +1,5 @@
 import { client } from "@/sanity/lib/client"; 
 import { groq } from "next-sanity"; 
-import { Slug } from "sanity"; 
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
