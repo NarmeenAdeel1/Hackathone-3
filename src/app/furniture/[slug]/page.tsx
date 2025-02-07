@@ -13,10 +13,17 @@ interface Product {
   description: string;
 }
 
+// Make sure params is required
+interface ProductPageProps {
+  params: {
+    slug: string; // Ensure 'slug' is required and properly typed
+  };
+}
+
 // Fetch product using getServerSideProps
 export async function getServerSideProps({ params }: { params: { slug: string } }) {
   const slug = params.slug;
-  
+
   if (!slug) {
     return { notFound: true };
   }
