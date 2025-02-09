@@ -1,5 +1,5 @@
-import { client } from "@/sanity/lib/client"; 
-import { groq } from "next-sanity"; 
+import { client } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -13,20 +13,9 @@ interface Product {
   description: string;
 }
 
-// Make sure params is required
-interface ProductPageProps {
-  params: {
-    slug: string; // Ensure 'slug' is required and properly typed
-  };
-}
-
-// Fetch product using getServerSideProps
-export async function getServerSideProps({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
-
-  if (!slug) {
-    return { notFound: true };
-  }
+// Fetch product inside a Server Component
+async function getProduct(slug: string): Promise<Product | null> {
+  if (!slug) return null;
 
   const product = await client.fetch(
     groq`*[_type == "product" && slug.current == $slug][0] {
@@ -40,18 +29,13 @@ export async function getServerSideProps({ params }: { params: { slug: string } 
     { slug }
   );
 
-  if (!product) {
-    return { notFound: true };
-  }
-
-  return { props: { product } };
+  return product || null;
 }
 
-interface ProductPageProps {
-  product: Product;
-}
+// Product Page Component
+export default async function ProductPage({ params }: { params: { slug: string } }) {
+  const product = await getProduct(params.slug);
 
-export default function ProductPage({ product }: ProductPageProps) {
   if (!product) {
     return <p className="text-red-500 text-center">Product not found!</p>;
   }

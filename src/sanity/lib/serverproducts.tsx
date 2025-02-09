@@ -2,7 +2,7 @@ import { sanityFetch } from "@/sanity/lib/live";
 
 const allProductsQuery = `*[_type == "product"]{
   _id,
-  productName,  // 'name' ko 'productName' se replace kiya
+  productName,  
   slug,
   image {
     asset-> { url }
